@@ -11,10 +11,10 @@ tela.fill((80,120,200))
 
 jogador = personagem("Imagens/Cachorro.gif",150,100,300,270)
 
-lista_pato=[Item("Imagens/pato.png",80,70,(random.randint(0,800)),0),
-            Item("Imagens/pato.png",80,70,(random.randint(0,800)),0),
-            Item("Imagens/pato.png",80,70,(random.randint(0,800)),0),
-            Item("Imagens/pato.png",80,70,(random.randint(0,800)),0),]
+lista_pato=[Item("Imagens/pato.png",80,70,),
+            Item("Imagens/pato.png",80,70,),
+            Item("Imagens/pato.png",80,70,),
+            Item("Imagens/pato.png",80,70,),]
 
 FUNDO = pygame.image.load("Imagens/Fundo.png")
 FUNDO = pygame.transform.scale(FUNDO,(800,500))
@@ -37,8 +37,11 @@ while rodando:
         pato.movimenta()   
         pato.desenhar(tela)
 
-    if jogador.mascara.overlap(pato.mascara,(pato.pos_x-jogador.pos_x , pato.pos_y-jogador.pos_y)):
-        jogador.pontuacao += 1
+        if jogador.mascara.overlap(pato.mascara,(pato.pos_x-jogador.pos_x , pato.pos_y-jogador.pos_y)):
+            jogador.pontuacao += 1
+            pato.movimenta()
+            pato.desenhar(tela)
+    
     
     texto_pontuacao = fonte.render(f"Pontuação: {jogador.pontuacao}",True,(255,0,0))
     tela.blit(texto_pontuacao,(0,10))
